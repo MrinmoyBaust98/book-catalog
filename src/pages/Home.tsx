@@ -1,4 +1,5 @@
 import LandingPageCard from "../components/LandingPageCard";
+import Footer from "../layouts/Footer";
 import { useGetLandingPageBooksQuery } from "../redux/api/apiSlice";
 import { IBooks } from "../types/globalTypes";
 
@@ -17,6 +18,7 @@ export default function Home() {
           ))}
         </div>
       </h3>
+      <Footer />
     </div>
   );
 }
