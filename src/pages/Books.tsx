@@ -9,7 +9,10 @@ export default function Books() {
 
   return (
     <div className="mt-16">
-      <h2 className="text-center">See All books</h2>
+      <h3 className="text-center text-3xl font-bold">
+        ALL<span className="text-red-400">Books </span>
+      </h3>
+
       <div className="col-span-9 grid grid-cols-3 gap-10 pb-20 mt-10">
         {allBookData?.map((book: IBooks) => (
           <AllBooksCard book={book} key={book.title} />

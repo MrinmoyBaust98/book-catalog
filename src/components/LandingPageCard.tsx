@@ -15,10 +15,10 @@ export default function LandingPageCard({ book }: IProps) {
           <p>
             <span className=" text-lg ">Genre: </span> {book?.genre}
           </p>
-          <p>
+          {/* <p>
             <span className=" text-lg ">PublicationDate: </span>
             {book?.publicationDate}
-          </p>
+          </p> */}
         </div>
       </div>
     </div>

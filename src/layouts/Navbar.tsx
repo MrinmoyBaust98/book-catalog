@@ -10,7 +10,7 @@ export default function Navbar() {
             <img src={navlogo} />
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-xl">
-            Book Catalog
+            BookCatalog
           </Link>
         </div>
         <div className="flex-none gap-20 align-middle">

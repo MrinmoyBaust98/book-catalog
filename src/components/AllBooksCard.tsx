@@ -8,7 +8,7 @@ export default function AllBooksCard({ book }: IProps) {
     <>
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body items-center text-center">
-          <h2 className="card-title text-2xl text-pink-500">{book?.title}</h2>
+          <h2 className="card-title text-2xl text-blue-600">{book?.title}</h2>
           <div className="text-base font-normal">
             <p>
               <span className=" text-lg ">Author : </span> {book?.author}
@@ -21,6 +21,9 @@ export default function AllBooksCard({ book }: IProps) {
               {book?.publicationDate}
             </p>
           </div>
+          <button className="rounded-full border-2 btn btn-outline btn-info">
+            SeeDetails
+          </button>
         </div>
       </div>
     </>
