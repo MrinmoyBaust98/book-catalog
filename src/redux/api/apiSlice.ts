@@ -7,7 +7,10 @@ export const api = createApi({
     getLandingPageBooks: builder.query({
       query: () => "/landing-page",
     }),
+    getAllBooks: builder.query({
+      query: () => "/books",
+    }),
   }),
 });
 
-export const { useGetLandingPageBooksQuery } = api;
+export const { useGetLandingPageBooksQuery, useGetAllBooksQuery } = api;

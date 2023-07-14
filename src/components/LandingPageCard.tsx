@@ -1,8 +1,9 @@
-import { IBooks } from "../../types/globalTypes";
+import { IBooks } from "../types/globalTypes";
+
 interface IProps {
   book: IBooks;
 }
-export default function LandingPage({ book }: IProps) {
+export default function LandingPageCard({ book }: IProps) {
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <div className="card-body items-center text-center">

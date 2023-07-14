@@ -1,11 +1,10 @@
-import LandingPage from "../components/ui/LandingPage";
+import LandingPageCard from "../components/LandingPageCard";
 import { useGetLandingPageBooksQuery } from "../redux/api/apiSlice";
 import { IBooks } from "../types/globalTypes";
 
 export default function Home() {
   //data fetch using RTK Query
   const { data } = useGetLandingPageBooksQuery(undefined);
-  console.log(data);
   let bookData = data?.data;
 
   return (
@@ -14,7 +13,7 @@ export default function Home() {
         Top 10 Recently Added Books
         <div className="col-span-9 grid grid-cols-3 gap-10 pb-20 mt-10">
           {bookData?.map((book: IBooks) => (
-            <LandingPage book={book} key={book.title} />
+            <LandingPageCard book={book} key={book.title} />
           ))}
         </div>
       </h3>
