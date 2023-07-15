@@ -31,7 +31,7 @@ export default function Login() {
                 Login to your account
               </h1>
               <p className="text-sm text-muted-foreground">
-                Enter your email below
+                Enter your email & password below
               </p>
             </div>
             <LoginFrom />
