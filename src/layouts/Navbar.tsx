@@ -1,7 +1,24 @@
 import navlogo from "../assets/images/navbarlogo.png";
 import avalogo from "../assets/images/profileavatar.png";
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { signOut } from "firebase/auth";
+import { auth } from "../lib/firebase";
+import { setuser } from "../redux/features/user/userSlice";
+
 export default function Navbar() {
+  // thake user from state
+  const { user } = useAppSelector((state) => state.user);
+  // dispatch
+  const dispatch = useAppDispatch();
+  //handle logout
+  const handleLogOut = () => {
+    signOut(auth).then(() => {
+      // Sign-out successful.
+      dispatch(setuser(null));
+    });
+  };
+
   return (
     <>
       <div className="navbar bg-base-100">
@@ -41,12 +58,24 @@ export default function Navbar() {
                   Profile
                 </Link>
               </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/signup">Sign Up</Link>
-              </li>
+
+              {/* if user not exist then --login & signup will show */}
+              {!user.email && (
+                <>
+                  <li>
+                    <Link to="/login">Login</Link>
+                  </li>
+                  <li>
+                    <Link to="/signup">Sign Up</Link>
+                  </li>
+                </>
+              )}
+              {/* if user  exist then -- logout will show */}
+              {user.email && (
+                <li onClick={handleLogOut}>
+                  <Link to="/">Log Out</Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>

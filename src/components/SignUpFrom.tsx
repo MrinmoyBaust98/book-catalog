@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { createUser } from "../redux/features/user/userSlice";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 interface SignupFormInputs {
   email: string;
@@ -14,14 +16,14 @@ export default function SignUpFrom() {
     formState: { errors },
   } = useForm<SignupFormInputs>();
 
-  // dispatch
+  //dispatch
   const dispatch = useAppDispatch();
 
   //onsubmit
   const onSubmit = (data: SignupFormInputs) => {
-    // console.log(data);
     dispatch(createUser({ email: data.email, password: data.password }));
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>

@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { loginUser } from "../redux/features/user/userSlice";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 interface ILoginFormInputs {
   email: string;
@@ -14,13 +16,26 @@ export default function LoginFrom() {
     formState: { errors },
   } = useForm<ILoginFormInputs>();
 
+  //access user from state
+  const { user, isLoading } = useAppSelector((state) => state.user);
   //dispatch
   const dispatch = useAppDispatch();
+  //navigate
+  const navigate = useNavigate();
+
   //onsubmit
   const onSubmit = (data: ILoginFormInputs) => {
     console.log("submitted");
     dispatch(loginUser({ email: data.email, password: data.password }));
   };
+
+  // when login successfull then redirect to home
+  useEffect(() => {
+    if (user.email && !isLoading) {
+      navigate("/");
+    }
+  }, [user.email, isLoading]);
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
