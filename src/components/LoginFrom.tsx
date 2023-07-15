@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
+import { useAppDispatch } from "../redux/hooks";
+import { loginUser } from "../redux/features/user/userSlice";
 
 interface ILoginFormInputs {
   email: string;
@@ -11,9 +13,13 @@ export default function LoginFrom() {
     handleSubmit,
     formState: { errors },
   } = useForm<ILoginFormInputs>();
+
+  //dispatch
+  const dispatch = useAppDispatch();
   //onsubmit
-  const onSubmit = () => {
+  const onSubmit = (data: ILoginFormInputs) => {
     console.log("submitted");
+    dispatch(loginUser({ email: data.email, password: data.password }));
   };
   return (
     <div>

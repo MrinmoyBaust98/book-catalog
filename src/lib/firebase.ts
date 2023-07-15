@@ -1,14 +1,14 @@
 import { initializeApp } from "firebase/app";
-require("dotenv").config();
+
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  apiKey: "AIzaSyAv3w5SjNCZ9JGsRhV2JYYgsPZrL3D0ziU",
+  authDomain: "book-catalog-77867.firebaseapp.com",
+  projectId: "book-catalog-77867",
+  storageBucket: "book-catalog-77867.appspot.com",
+  messagingSenderId: "289551964960",
+  appId: "1:289551964960:web:ddc5890108602f726ad545",
 };
 
 // Initialize Firebase
