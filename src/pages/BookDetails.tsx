@@ -1,6 +1,7 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useGetsingleBooksQuery } from "../redux/api/apiSlice";
 import BookReview from "../components/BookReview";
+import Modal from "../components/Modal";
 
 export default function BookDetails() {
   const { id } = useParams();
@@ -32,10 +33,13 @@ export default function BookDetails() {
             </p>
 
             <div className="mt-6 mb-32">
-              <button className="btn btn-outline btn-success mr-3">
-                Edit Book
-              </button>
-              <button className="btn btn-outline btn-error">Delete Book</button>
+              <Link to="/edit-book">
+                <button className="btn btn-outline btn-success mr-3">
+                  Edit Book
+                </button>
+              </Link>
+              {/* show delete button confirmation */}
+              <Modal />
             </div>
           </div>
         </div>
