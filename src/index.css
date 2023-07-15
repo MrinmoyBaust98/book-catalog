@@ -40,3 +40,8 @@
   border-radius: 0.5rem;
   max-width: 30rem;
 }
+
+/* Books pages flex style */
+.divider {
+  display: flex;
+}

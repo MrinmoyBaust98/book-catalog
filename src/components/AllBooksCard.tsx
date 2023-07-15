@@ -7,7 +7,7 @@ interface IProps {
 export default function AllBooksCard({ book }: IProps) {
   return (
     <>
-      <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card  bg-base-100 shadow-xl">
         <div className="card-body items-center text-center">
           <h2 className="card-title text-2xl text-blue-600">{book?.title}</h2>
           <div className="text-base font-normal">
