@@ -4,6 +4,8 @@ import {
   useGetCommentQuery,
   usePostCommentMutation,
 } from "../redux/api/apiSlice";
+import { useAppSelector } from "../redux/hooks";
+import { Link } from "react-router-dom";
 
 interface IProps {
   id: string;
@@ -11,6 +13,8 @@ interface IProps {
 
 export default function BookReview({ id }: IProps) {
   const [inputValue, setInputValue] = useState<string>("");
+
+  const { user } = useAppSelector((state) => state.user);
 
   // get comment
   const { data } = useGetCommentQuery(id);
@@ -43,12 +47,30 @@ export default function BookReview({ id }: IProps) {
           onChange={handleChange}
           value={inputValue}
         />
-        <button
-          type="submit"
-          className="rounded-full h-10 w-10 p-2 text-[25px]"
-        >
-          <FiSend />
-        </button>
+        {user.email && (
+          <>
+            <button
+              type="submit"
+              className="rounded-full h-10 w-10 p-2 text-[25px]"
+            >
+              <FiSend />
+            </button>
+          </>
+        )}
+
+        {/* if user unauthorized */}
+        {!user.email && (
+          <>
+            <Link to="/login">
+              <button
+                type="submit"
+                className="rounded-full h-10 w-10 p-2 text-[25px]"
+              >
+                <FiSend />
+              </button>
+            </Link>
+          </>
+        )}
       </form>
       <div className="mt-10">
         {data?.review?.map((comment: string, index: number) => (

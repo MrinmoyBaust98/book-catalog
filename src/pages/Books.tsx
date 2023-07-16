@@ -1,11 +1,33 @@
 import AllBooksCard from "../components/AllBooksCard";
 import { useGetAllBooksQuery } from "../redux/api/apiSlice";
+import { setSearchtext } from "../redux/features/books/bookSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { IBooks } from "../types/globalTypes";
 
 export default function Books() {
   //data fetch using RTK Query
   const { data } = useGetAllBooksQuery(undefined);
-  let allBookData = data?.data;
+
+  // redux toolkit
+  const { status, searchtext } = useAppSelector((state) => state.book);
+  const dispatch = useAppDispatch();
+
+  //Search handle
+  const handleSearchField = (event: any) => {
+    const searchTextValue = event.target.value;
+    dispatch(setSearchtext(searchTextValue));
+  };
+  let allBookData;
+  if (status) {
+    allBookData = data?.data?.filter(
+      (book: { title: string; author: string; genre: string }) =>
+        book.title.toLowerCase().includes(searchtext!.toLowerCase()) ||
+        book.author.toLowerCase().includes(searchtext!.toLowerCase()) ||
+        book.genre.toLowerCase().includes(searchtext!.toLowerCase())
+    );
+  } else {
+    allBookData = data?.data;
+  }
 
   return (
     <div className="flex">
@@ -13,27 +35,16 @@ export default function Books() {
         <div className="col-span-3 z mr-10 space-y-5 border rounded-2xl border-gray-200/80 p-5 self-start sticky top-16 h-[calc(100vh-80px)]">
           <div>
             <h1 className="text-2xl uppercase">Availability</h1>
-            <div
-              // onClick={() => dispatch(toggleState())}
-              className="flex items-center space-x-2 mt-3"
-            >
-              <input
-                type="text"
-                placeholder="Search"
-                className="input input-bordered w-24 md:w-auto"
-              />
-            </div>
-          </div>
-          <div className="space-y-3 ">
-            <h1 className="text-2xl uppercase">Filter BY</h1>
-            <div className="max-w-xl">
-              <select className="select w-full max-w-xs">
-                <option disabled selected>
-                  Filter By
-                </option>
-                <option>Genre</option>
-                <option>Publication year</option>
-              </select>
+            <div className="flex items-center  mt-3">
+              <div>
+                <input
+                  className="input input-bordered input-secondary"
+                  onChange={handleSearchField}
+                  type="text"
+                  placeholder="Searh Here"
+                />
+                <button className="border ">Search</button>
+              </div>
             </div>
           </div>
         </div>
