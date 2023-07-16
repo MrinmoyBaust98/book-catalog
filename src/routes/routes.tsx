@@ -7,6 +7,8 @@ import NotFound from "../pages/NotFound";
 import Home from "../pages/Home";
 import BookDetails from "../pages/BookDetails";
 import EditBook from "../pages/EditBook";
+import AddBook from "../pages/AddBook";
+import PrivateRoute from "./PrivateRoute";
 
 const routes = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ const routes = createBrowserRouter([
       {
         path: "/edit-book",
         element: <EditBook />,
+      },
+      {
+        path: "/add-book",
+        element: (
+          <PrivateRoute>
+            <AddBook />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
